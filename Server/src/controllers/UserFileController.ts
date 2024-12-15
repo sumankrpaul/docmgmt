@@ -1,14 +1,12 @@
 import { Request, Response } from "express"
 import { UnAuthorised } from "../errors/UnAuthorisedError";
 import { UserFile } from "../models/UserFiles";
-import { IFilesSharedType, IUserFileNewRequest, IUserFileShareRequest, IUserFilesResponse } from "../interfaces/IfcUserFiles";
+import { IFilesSharedType, IUserFileNewRequest, IUserFileShareRequest } from "../interfaces/IfcUserFiles";
 import mongoose from "mongoose";
 import { BadRequestError } from "../errors/BadRequestError";
 import fs from 'node:fs/promises';
 import { GenericError } from "../errors/GenericError";
 import path from 'path';
-import { IUserDetailResponse } from "../interfaces/IFCUser";
-import { fileURLToPath } from "node:url";
 import IResponse from "../interfaces/AppResponse";
 
 const addNewFile = async (req: Request<{},{}, IUserFileNewRequest>,res: Response)=>{
@@ -101,7 +99,7 @@ const getMyFiles = async (req: Request, res: Response)=>{
 const getSharedFiles = async (req: Request, res: Response)=>{
     const currentUser = req.currentUser;
     if(currentUser){
-        const userFile = await UserFile.find({ $or: [{shared_to: currentUser.id}, {shared_to: IFilesSharedType.All}], owner: {$neq: currentUser.id} }, {file_location: 0}).populate("owner");
+        const userFile = await UserFile.find({ $or: [{shared_to: currentUser.id}, {shared_type: IFilesSharedType.All}], owner: {$ne: currentUser.id} }, {file_location: 0}).populate("owner");
         return res.json({ message: "List of my files", total_files: userFile.length, file_list: userFile.map(file => file.toJSON()) })
     }
 }
