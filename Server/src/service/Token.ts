@@ -1,7 +1,7 @@
-import { IUser } from "@/interfaces/IUser";
 import jwt from 'jsonwebtoken';
-console.log(process.env);
+import { IUser, IUserTokenPayload } from '../interfaces/IFCUser';
 const JWT_SERCRET = process.env.JWTSECRET!;
+
 
 export class Token {
     static generateToken(userDetail: IUser){
@@ -11,8 +11,7 @@ export class Token {
     }
     static verifyToken(token: string) {
         try{
-            console.log(JWT_SERCRET);
-            const decoded = jwt.verify(token, JWT_SERCRET) as IUser;
+            const decoded = jwt.verify(token, JWT_SERCRET) as IUserTokenPayload;
             return decoded
         } catch (err) {
             return false;

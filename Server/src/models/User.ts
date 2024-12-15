@@ -1,4 +1,4 @@
-import { Password } from "@/service/Password";
+import { Password } from "../service/Password";
 import mongoose from "mongoose";
 
 interface UserAttr { 
@@ -10,6 +10,7 @@ interface UserAttr {
 }
 
 interface UserDocument extends mongoose.Document {
+    id: string,
     first_name: string,
     last_name: string,
     email: string,

@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { IUser } from "./IUser";
+import { IUser } from "./IFCUser";
 
 export interface AuthenticatedRequest extends Request{
     currentUser?: IUser
