@@ -1,3 +1,5 @@
+
+import { EmitFlags } from "typescript";
 import { Password } from "../service/Password";
 import mongoose from "mongoose";
 
@@ -54,6 +56,8 @@ userSchema.pre('save', async function(done) {
 userSchema.statics.build = (attr: UserAttr) =>{
     return new User(attr);
 }
+
+userSchema.index({ 'first_name': 'text', 'last_name': 'text', 'email': 'text' })
 
 const User = mongoose.model<UserDocument, UserModel>('user', userSchema);
 

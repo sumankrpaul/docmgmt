@@ -39,3 +39,8 @@ export interface IUserDetailResponse extends IResponse {
     user_details: IUser
 }
 
+
+export interface IUserSearchResponse extends IResponse {
+    total_users: number;
+    user_list: IUser[];
+}
