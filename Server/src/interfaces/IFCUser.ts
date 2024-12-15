@@ -1,5 +1,6 @@
 import { JwtPayload } from "jsonwebtoken";
 import IResponse from "./AppResponse";
+import mongoose from "mongoose";
 
 export interface IUser {
     id: string;

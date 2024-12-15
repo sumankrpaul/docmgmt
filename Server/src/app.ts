@@ -6,12 +6,13 @@ import { NotFoundError } from "./errors/NotFoundError";
 
 import UserRoutes from "./routes/UserRoutes";
 import UserFileRoutes from "./routes/UserFileRoutes";
+import { checkAuthenticated } from "./middlewares/Authenticate";
 
 const App = express();
 App.use(json());
 
 App.use('/user', UserRoutes.getRouter());
-App.use('/files', UserFileRoutes.getRouter());
+App.use('/files', checkAuthenticated ,UserFileRoutes.getRouter());
 App.all('*', ()=> { throw new NotFoundError } )
 
 App.use(ErrorHandler);
