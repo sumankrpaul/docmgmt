@@ -1,29 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import './index.css';
-// @ts-ignore
-import sampleimage from "../public/demo.jpg";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { AppLayout } from "./Layout";
+import Redirect from "./components/Redirect";
 
 function App (){
-    const [count, setCount] = useState(1);
-    
-    return <div>
-        <h1>HAua Haua</h1>
-        <h1>Chnaged</h1>
-        <h1>Cool vite </h1>
-        <img src={sampleimage} height={300} width={500} />
-        
-        <h1> Count Is : {count} </h1>
-        <button type="button" onClick={()=> setCount(count+1)} > + Increment</button>
-        <button type="button" onClick={()=> setCount(count-1)} > - Decrement</button>
-
-        <div className="p-4 rounded bg-slate-300">
-            <h1 className="text-lg font-semibold text-slate-700" >
-                Testing Tailwind
-            </h1>
-        </div>
+    return <div className="h-screen">
+        <Routes >
+            <Route element={<AppLayout/>}>
+                <Route path="/" element={<Redirect redirectTo="/my_files" />} />
+                <Route path="/my_files" element={<div> My Files </div>} />
+                <Route path="/shared_file" element={<div> Shared Files </div>} />
+                <Route path="/me" element={<div> My Details </div>}/>
+            </Route>
+        </Routes>
 
     </div>
 
 }
 
-export default App;
+export default ()=>{
+    return <Router>
+        <App/>
+    </Router>;
+}
