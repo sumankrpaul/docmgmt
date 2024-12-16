@@ -49,7 +49,7 @@ const reducer = (state: initialState, action: ContextActions): initialState =>{
         }
         case 'SETAUTHSTATUS': {
             const {auth} = state;
-            return { ...state, auth: {...auth, status: payload.status}}
+            return { ...state, auth: {...auth, status: payload.status, error: ''}}
         }
         case 'CHECKAUTH': {
             const storedToken = localStorage.getItem(tokenKey);

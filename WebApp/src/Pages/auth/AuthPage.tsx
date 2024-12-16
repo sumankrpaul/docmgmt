@@ -14,7 +14,7 @@ function AuthPage() {
         if(state.auth.isAutheicated){
           navigate('/')
         }
-      }, [state.auth.isAutheicated]);
+    }, [state.auth.isAutheicated]);
     
     useEffect(()=>{
         dispatch({type: 'CHECKAUTH', payload:{}});
