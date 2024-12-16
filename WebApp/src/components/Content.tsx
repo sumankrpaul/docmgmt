@@ -32,7 +32,7 @@ const AppBreadcrums = ()=>{
     return  <div className="px-4 py-2 flex gap-x-1" >
         {breadCrums.map((subPath, index)=>{
             if(subPath.name !== ''){
-                return <Link className="cursor-pointer hover:underline" to={subPath.path} > {subPath.name} {index < breadCrums.length-1? '/':''} </Link>
+                return <Link key={subPath.name} className="cursor-pointer hover:underline" to={subPath.path} > {subPath.name} {index < breadCrums.length-1? '/':''} </Link>
             }
         })}
     </div>
