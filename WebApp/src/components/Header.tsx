@@ -7,8 +7,8 @@ export default ()=>{
             Doc Management 
         </h1>
         <div className="flex gap-x-2">
-            <AppLink to="/my_files" > My Files </AppLink>
-            <AppLink to="/shared_file" > Shared Files </AppLink>
+            <AppLink to="/dashboard" > Dashboard </AppLink>
+            <AppLink to="/myfiles" > My Files </AppLink>
         </div>
     </div>
 }

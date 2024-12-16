@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 export default ({children}:{children: ReactNode})=>{
     return <div style={{height: 'calc(100% - 60px)' }} className="bg-slate-50 text-slate-900" >
         <AppBreadcrums/>
-        <div>
+        <div style={{height: 'calc(100% - 40px)' }} className="px-4">
             {children}
         </div>
     </div>
@@ -28,11 +28,11 @@ const AppBreadcrums = ()=>{
     }
     useEffect(()=>{
         generateRoutes();
-    }, [])
-    return  <div className="py-2 flex gap-x-1" >
-        {breadCrums.map((subPath)=>{
+    }, [location])
+    return  <div className="px-4 py-2 flex gap-x-1" >
+        {breadCrums.map((subPath, index)=>{
             if(subPath.name !== ''){
-                return <Link className="cursor-pointer hover:underline" to={subPath.path} > {subPath.name} / </Link>
+                return <Link className="cursor-pointer hover:underline" to={subPath.path} > {subPath.name} {index < breadCrums.length-1? '/':''} </Link>
             }
         })}
     </div>

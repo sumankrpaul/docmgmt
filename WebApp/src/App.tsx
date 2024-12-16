@@ -3,15 +3,18 @@ import './index.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AppLayout } from "./Layout";
 import Redirect from "./components/Redirect";
+import {Dashboard, MyFiles} from './Pages';
+import { DocumentContextProvider } from "../service/Document.context";
+import { CheckAuth } from "./components/CheckAuth";
 
 function App (){
     return <div className="h-screen">
         <Routes >
-            <Route element={<AppLayout/>}>
-                <Route path="/" element={<Redirect redirectTo="/my_files" />} />
-                <Route path="/my_files" element={<div> My Files </div>} />
-                <Route path="/shared_file" element={<div> Shared Files </div>} />
-                <Route path="/me" element={<div> My Details </div>}/>
+            <Route path="/signin" element={<div>Sign In</div>} ></Route>
+            <Route element={<CheckAuth><AppLayout/></CheckAuth>}>
+                <Route path="/" element={<Redirect redirectTo="/dashboard" />} />
+                <Route path="/dashboard" element={<Dashboard/>} />
+                <Route path="/myfiles" element={<MyFiles/>} />
             </Route>
         </Routes>
 
@@ -20,7 +23,9 @@ function App (){
 }
 
 export default ()=>{
-    return <Router>
-        <App/>
-    </Router>;
+    return <DocumentContextProvider>
+        <Router>
+            <App/>
+        </Router>
+    </DocumentContextProvider>;
 }
