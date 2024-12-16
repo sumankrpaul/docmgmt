@@ -1,4 +1,5 @@
 import { IResponse } from "../interface/IfcCommon"
+import { IUser } from "../interface/IfcUser"
 import { publicInstance } from "./common"
 
 export interface RegisterUserPayload {
@@ -14,21 +15,25 @@ export interface LoginUserPayload {
     "password": string,
 }
 
+interface LoginUserResponse extends IResponse {
+    user_details: IUser,
+    user_token: string,
+}
 
 export const registerUser = async (payload: RegisterUserPayload)=>{
     try {
         const response = await publicInstance.post<IResponse>('/user/register', {...payload})
         return response;
     } catch(err) {
-        console.log(err);
+        throw err as { message: string };
     }
 }
 
 export const loginExistingUser = async (payload: LoginUserPayload)=>{
     try{
-        const response = await publicInstance.post<IResponse>('/user/login', {...payload});
+        const response = await publicInstance.post<LoginUserResponse>('/user/login', {...payload});
         return response;
     } catch(err) {
-        console.log(err);
+        throw err as { message: string }
     }
 }

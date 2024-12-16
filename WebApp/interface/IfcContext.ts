@@ -37,7 +37,7 @@ export interface ContextProps {
 
 export type ContextActions = {
     type: 'SETAUTHUSER';
-    payload: { isAuthenticated: boolean, user: IUser, status: IAPIStatus }
+    payload: { isAuthenticated: boolean, user: IUser, status: IAPIStatus, user_token: string }
 } | {
     type: 'SETAUTHSTATUS';
     payload: { status: IAPIStatus }
@@ -46,5 +46,8 @@ export type ContextActions = {
     payload: { error: string }
 } | {
     type: 'LOGOUTUSER'; 
+    payload: {}
+} | {
+    type:'CHECKAUTH',
     payload: {}
 }
