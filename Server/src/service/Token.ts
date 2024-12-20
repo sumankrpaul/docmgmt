@@ -7,7 +7,7 @@ export class Token {
     static generateToken(userDetail: IUser){
         return jwt.sign({
             ...userDetail
-        }, JWT_SERCRET, {expiresIn: 300 })
+        }, JWT_SERCRET, {expiresIn: 86400 })
     }
     static verifyToken(token: string) {
         try{
