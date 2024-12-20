@@ -58,13 +58,14 @@ privateInstance.interceptors.response.use(
             // console.log('Unauthorized access - redirecting to login');
             localStorage.removeItem(tokenKey);
             localStorage.removeItem(detailKey);
+            if(window) window.location.reload();
         }
 
         if(error && error.response && error.response.data){
             throw error.response.data;
         } else {
             throw error;
-        }
+        }   
     }
 );
 

@@ -1,10 +1,12 @@
 import React, { ReactNode } from "react"
+import { ImageViwer } from "../../components/ImageViewer"
 
 export default ()=>{
     return <div className=" h-full grid grid-rows-2 gap-4">
         <div> 
             <FileList>
                 <RowHeader> Shared Files </RowHeader>
+                <ImageViwer id="675f13949b8609c8fd507a0d" alt="testing" />
             </FileList>
         </div>
         <div> 

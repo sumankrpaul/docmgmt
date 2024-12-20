@@ -22,7 +22,7 @@ function AuthPage() {
 
 
     return <div className='h-full bg-slate-50 flex'>
-    <div className='m-auto shadow w-[500px] bg-slate-100'>
+    <div className='m-auto shadow w-[500px] bg-slate-100 border border-gray-300'>
         <div className='flex justify-center border-b'>
             <FormSelector isActive={formType === 'login'} selected={()=> setFormType('login')} >Log In</FormSelector>
             <FormSelector isActive={formType === 'register'} selected={()=> setFormType('register')}> Register </FormSelector>

@@ -38,9 +38,6 @@ function RegisterForm() {
     })
   }
 
-  useEffect(()=>{
-    toast.success('Check if working');
-  }, [])
   
   return <Formik initialValues={initialValue} validationSchema={validationSchema} onSubmit={handleSubmit}>
     {(formikHelper)=>(<Form className='flex flex-col gap-y-1'>
